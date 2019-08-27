@@ -11,7 +11,6 @@
 
 
 
-
 # import the QUARTER variable (formatted "2000A", for example)
 source ./note-config
 
