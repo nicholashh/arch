@@ -1,26 +1,54 @@
 #!/bin/bash
 
+### OPEN A "NOTE" FILE
+# indexed by: the current date
+#    use: $(./note)
+# possible second index: a "class" code
+#    use: $(./note metaphysics)
+
+# Copyright (C) (2019-?) Nicholas Hanson-Holtry
+# See: The GNU General Public License
+
+
+
+
+# import the QUARTER variable (formatted "2000A", for example)
 source ./note-config
 
+# initialize the DATE variable (formatted "20000101", for example)
 DATE=$(date +"%Y%m%d")
 
-CLASSES=($(ls -d ~/private/class/notes/$QUARTER/*/))
-for i in ${!CLASSES[@]}; do
-  CLASSES[$i]=$(basename ${CLASSES[$i]})
-done
-
+# if this program is run with no arguments:
+# open a new text file (with a title of the current date)
 if (( "$#" == "0" )); then
   nano ~/private/general/notes/$DATE
+
+# or, if run with more than (exactly) one argument: report an error
 elif (( "$#" > "1" )); then
   echo "too many arguments"
+
+# or, assume the argument denotes the desire "class"
+# (in which we want to take the note)
 else
+
+  # initialize a list of the classes available for the current quarter
+  CLASSES=($(ls -d ~/private/class/notes/$QUARTER/*/))
+  for i in ${!CLASSES[@]}; do
+    CLASSES[$i]=$(basename ${CLASSES[$i]})
+  done
+
+  # if the provided class code matches any of the available classes:
   FOUND=0
   for CLASS in "${CLASSES[@]}"; do
     if [ "$1" == "$CLASS" ]; then
-      nano ~/private/class/notes/$QUARTER/$CLASS/$DATE
       FOUND=1
+
+      # open the appropriate (text) file
+      nano ~/private/class/notes/$QUARTER/$CLASS/$DATE
     fi
   done
+
+  # or, if the code can not be found: report an error
   if (( $FOUND == 0 )); then
     echo "invalid argument"
   fi
