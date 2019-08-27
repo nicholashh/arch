@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pacman -Qqen > packages.txt
+source ./backup-config
 
 git add .
 git commit -m "auto"

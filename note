@@ -1,32 +1,27 @@
 #!/bin/bash
 
-TIME=$(date +"%Y%m%d")
+source ./note-config
 
-i=0
-CLASSES=()
-while read data; do
-  if (("$i"=="0")); then
-    QUARTER=$data
-  else
-    CLASSES+=($data)
-  fi
-  ((i++))
-done < .note-config
+DATE=$(date +"%Y%m%d")
 
-if [ "$#" == "0" ]; then
-  nano ~/private/general/notes/$TIME
+CLASSES=($(ls -d ~/private/class/notes/$QUARTER/*/))
+for i in ${!CLASSES[@]}; do
+  CLASSES[$i]=$(basename ${CLASSES[$i]})
+done
+
+if (( "$#" == "0" )); then
+  nano ~/private/general/notes/$DATE
 elif (( "$#" > "1" )); then
   echo "too many arguments"
-  echo $#
 else
   FOUND=0
   for CLASS in "${CLASSES[@]}"; do
     if [ "$1" == "$CLASS" ]; then
-      nano ~/private/class/notes/$QUARTER/pro/$TIME
+      nano ~/private/class/notes/$QUARTER/$CLASS/$DATE
       FOUND=1
     fi
   done
-  if (($FOUND==0)); then
+  if (( $FOUND == 0 )); then
     echo "invalid argument"
   fi
 fi
