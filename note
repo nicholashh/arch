@@ -27,7 +27,7 @@ if (( "$#" == "0" )); then
 elif (( "$#" > "1" )); then
   echo "too many arguments"
 
-# or, assume the argument denotes the desire "class"
+# or, assume the argument denotes the desired "class"
 # (in which we want to take the note)
 else
 
