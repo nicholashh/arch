@@ -1,6 +1,6 @@
 #!/bin/bash
 
-### "BACKUP" EVERYTHING (BLINDLY)
+### (BLINDLY) "BACKUP" EVERYTHING
 # also: can add additional custom related actions in a local config file
 # intended application: symbolically link to this file from elsewhere
 #    use: $(./backup)
