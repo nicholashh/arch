@@ -22,6 +22,7 @@ DATE=$(date +"%Y%m%d")
 # open a new text file (with a title of the current date)
 if (( "$#" == "0" )); then
   nano ~/private/general/notes/$DATE
+  clear
 
 # or, if run with more than (exactly) one argument: report an error
 elif (( "$#" > "1" )); then
@@ -45,6 +46,7 @@ else
 
       # open the appropriate (text) file
       nano ~/private/class/notes/$QUARTER/$CLASS/$DATE
+      clear
     fi
   done
 
