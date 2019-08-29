@@ -1,5 +1,10 @@
 #!/bin/bash
 
+### (BLINDLY) "BACKUP" EVERYTHING
+# also: can add additional custom related actions in a local config file
+# intended application: symbolically link to this file from elsewhere
+#    use: $(./backup)
+
 # Copyright (C) (2019-?) Nicholas Hanson-Holtry
 # See: The GNU General Public License
 
