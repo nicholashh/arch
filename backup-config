@@ -4,3 +4,6 @@
 # See: The GNU General Public License
 
 pacman -Qqen > packages
+
+cp ~/.bashrc ./bashrc
+
