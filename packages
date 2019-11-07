@@ -53,6 +53,7 @@ sysfsutils
 systemd-sysvcompat
 tar
 texinfo
+tree
 usbutils
 util-linux
 vi
